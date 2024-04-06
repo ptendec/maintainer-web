@@ -1,7 +1,14 @@
+import { useExercisesServiceExerciseControllerFindAll } from "@/shared/services/queries";
 import React from "react";
 
 const Main: React.FC = () => {
-  return <div>aass</div>;
+  const { data, refetch } = useExercisesServiceExerciseControllerFindAll();
+  return (
+    <div>
+      {JSON.stringify(data)}
+      <button onClick={() => refetch()}>ss</button>
+    </div>
+  );
 };
 
 export default Main;
