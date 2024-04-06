@@ -1,21 +1,29 @@
 // generated with @7nohe/openapi-react-query-codegen@0.5.3
 import {
-  UseMutationOptions,
-  UseQueryOptions,
-  UseQueryResult,
-  useMutation,
   useQuery,
+  useMutation,
+  UseQueryResult,
+  UseQueryOptions,
+  UseMutationOptions,
+  UseMutationResult,
 } from "@tanstack/react-query";
 import { CreateDayDto } from "../requests/models/CreateDayDto";
 import { CreateExerciseDto } from "../requests/models/CreateExerciseDto";
 import { CreateProgramDto } from "../requests/models/CreateProgramDto";
 import { CreateStageDto } from "../requests/models/CreateStageDto";
 import { CreateUserDto } from "../requests/models/CreateUserDto";
+import { GetDayDto } from "../requests/models/GetDayDto";
+import { GetExerciseDto } from "../requests/models/GetExerciseDto";
+import { GetProgramDto } from "../requests/models/GetProgramDto";
+import { GetStageDto } from "../requests/models/GetStageDto";
 import { LoginUserDto } from "../requests/models/LoginUserDto";
+import { LoginUserResDto } from "../requests/models/LoginUserResDto";
+import { RefreshTokenDto } from "../requests/models/RefreshTokenDto";
 import { UpdateDayDto } from "../requests/models/UpdateDayDto";
 import { UpdateExerciseDto } from "../requests/models/UpdateExerciseDto";
 import { UpdateProgramDto } from "../requests/models/UpdateProgramDto";
 import { UpdateStageDto } from "../requests/models/UpdateStageDto";
+import { UserDto } from "../requests/models/UserDto";
 import { AuthService } from "../requests/services/AuthService";
 import { DaysService } from "../requests/services/DaysService";
 import { ExercisesService } from "../requests/services/ExercisesService";
