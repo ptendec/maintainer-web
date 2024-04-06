@@ -34,5 +34,8 @@ jobs:
       - name: Build the project
         run: ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && yarn build"
 
+      - name: Start app
+        run: ssh $SSH_USER@$SSH_HOST "cd $WORK_DIR && pm2 start ecosystem.config.js --env production"
+
       - name: Cleanup
         run: rm -rf ~/.ssh
