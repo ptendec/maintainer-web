@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CreateDayDto } from '../models/CreateDayDto';
+import type { GetDayDto } from '../models/GetDayDto';
 import type { UpdateDayDto } from '../models/UpdateDayDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -27,23 +28,29 @@ export class DaysService {
     });
   }
   /**
-   * @returns CreateDayDto Array of all days.
+   * @param programId
+   * @returns GetDayDto Array of all days.
    * @throws ApiError
    */
-  public static dayControllerFindAll(): CancelablePromise<Array<CreateDayDto>> {
+  public static dayControllerFindAll(
+    programId?: number,
+  ): CancelablePromise<Array<GetDayDto>> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/days',
+      query: {
+        'programId': programId,
+      },
     });
   }
   /**
    * @param id
-   * @returns CreateDayDto The day with the specified ID.
+   * @returns GetDayDto The day with the specified ID.
    * @throws ApiError
    */
   public static dayControllerFindOne(
     id: string,
-  ): CancelablePromise<CreateDayDto> {
+  ): CancelablePromise<GetDayDto> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/days/{id}',

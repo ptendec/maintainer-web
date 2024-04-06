@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CreateStageDto } from '../models/CreateStageDto';
+import type { GetStageDto } from '../models/GetStageDto';
 import type { UpdateStageDto } from '../models/UpdateStageDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -27,23 +28,29 @@ export class StagesService {
     });
   }
   /**
-   * @returns CreateStageDto Array of all stages.
+   * @param dayId
+   * @returns GetStageDto Array of all stages.
    * @throws ApiError
    */
-  public static stageControllerFindAll(): CancelablePromise<Array<CreateStageDto>> {
+  public static stageControllerFindAll(
+    dayId?: number,
+  ): CancelablePromise<Array<GetStageDto>> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/stages',
+      query: {
+        'dayId': dayId,
+      },
     });
   }
   /**
    * @param id
-   * @returns CreateStageDto The stage with the specified ID.
+   * @returns GetStageDto The stage with the specified ID.
    * @throws ApiError
    */
   public static stageControllerFindOne(
     id: string,
-  ): CancelablePromise<CreateStageDto> {
+  ): CancelablePromise<GetStageDto> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/stages/{id}',

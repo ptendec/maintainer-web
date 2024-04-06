@@ -1,16 +1,24 @@
 import {
-  useDaysServiceDayControllerCreate,
+  useDaysServiceDayControllerFindAll,
   useProgramsServiceProgramControllerFindAll,
+  useStagesServiceStageControllerCreate,
 } from "@/shared/services/queries";
 import { Box, Button, Group, Select, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
-export const AddDay = () => {
+export const AddStage = () => {
   const navigate = useNavigate();
-  const { mutateAsync: addDay } = useDaysServiceDayControllerCreate();
-  const { data } = useProgramsServiceProgramControllerFindAll();
+  const { mutateAsync: addStage } = useStagesServiceStageControllerCreate();
+  const [programId, setProgramId] = useState<number>();
+  const [dayId, setDayId] = useState<number>();
+
+  const { data: programs } = useProgramsServiceProgramControllerFindAll();
+  const { data: days } = useDaysServiceDayControllerFindAll({
+    programId,
+  });
+
   const form =
     useForm({
       initialValues: {
@@ -18,21 +26,19 @@ export const AddDay = () => {
       },
     }) ?? [];
 
-  const [programId, setProgramId] = useState<number>();
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formValues = form.validate();
-    if (!programId) return;
+    if (!dayId) return;
     if (formValues.hasErrors) {
       // обработка ошибок или дополнительная логика
       return;
     }
     try {
-      await addDay({
+      await addStage({
         requestBody: {
           ...form.values,
-          programId,
+          dayId,
         },
       });
       navigate({
@@ -43,10 +49,20 @@ export const AddDay = () => {
     }
   };
 
-  const formatted = data?.map((item) => ({
+  const formattedPrograms = programs?.map((item) => ({
     value: String(item.id),
     label: item.name,
   }));
+
+  const formattedDays = days?.map((item) => ({
+    value: String(item.id),
+    label: item.name,
+  }));
+
+  const onProgramChange = (value: string | null) => {
+    setProgramId(Number(value));
+    setDayId(undefined);
+  };
 
   return (
     <Box style={{ maxWidth: 300 }} mx="auto">
@@ -56,15 +72,24 @@ export const AddDay = () => {
         </Title>
         <TextInput
           error={form.errors.name}
-          label="Название дня"
+          label="Название этапа"
           {...form.getInputProps("name")}
           required
         />
         <Select
           label="Выберите программу"
           placeholder="Выберите программу"
-          data={formatted}
-          onChange={(value) => setProgramId(Number(value))}
+          data={formattedPrograms}
+          onChange={onProgramChange}
+        />
+        <Select
+          value={dayId ? String(dayId) : null}
+          label="Выберите день"
+          placeholder="Выберите день"
+          data={formattedDays}
+          onChange={(value) => {
+            setDayId(Number(value));
+          }}
         />
         <Group mt="md">
           <Button type="submit">Создать</Button>

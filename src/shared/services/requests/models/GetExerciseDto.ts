@@ -2,13 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type CreateExerciseDto = {
+export type GetExerciseDto = {
+  id: number;
   name: string;
-  remark?: string;
-  warning?: string;
-  video?: string;
-  sets?: number;
-  repeats?: number;
-  stageId: number;
+  dayId: number;
 };
 

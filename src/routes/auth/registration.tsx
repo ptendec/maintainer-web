@@ -69,18 +69,26 @@ export const UserRegistrationForm = () => {
         <Title order={3} mb="md">
           Регистрация
         </Title>
-        <TextInput label="Имя" {...form.getInputProps("firstName")} required />
+        <TextInput
+          label="Имя"
+          error={form.errors.firstName}
+          {...form.getInputProps("firstName")}
+          required
+        />
         <TextInput
           label="Фамилия"
+          error={form.errors.lastName}
           {...form.getInputProps("lastName")}
           required
         />
         <TextInput
+          error={form.errors.email}
           label="Электронная почта"
           {...form.getInputProps("email")}
           required
         />
         <PasswordInput
+          error={form.errors.password}
           label="Пароль"
           {...form.getInputProps("password")}
           required

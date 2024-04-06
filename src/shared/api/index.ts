@@ -368,10 +368,10 @@ export const request = <T>(
   return new CancelablePromise(async (resolve, reject, onCancel) => {
     try {
       const url = getUrl(config, options);
-      const formData = getFormData(options);
-      const body = getRequestBody(options);
-      const headers = await getHeaders(config, options);
       const executeRequest = async (): Promise<Response> => {
+        const formData = getFormData(options);
+        const body = getRequestBody(options);
+        const headers = await getHeaders(config, options);
         return await sendRequest(
           config,
           options,
@@ -385,15 +385,11 @@ export const request = <T>(
 
       let response = await executeRequest();
 
-      // Check for token expiration or authorization error
       if (response.status === 401 || response.status === 403) {
-        console.log("Token might be expired, attempting to refresh...");
-
         try {
           const token = await refreshAccessToken();
           config.TOKEN = token;
           OpenAPI.TOKEN = token;
-          // Retry the request once after refreshing the token
           response = await executeRequest();
         } catch (refreshError) {
           reject(refreshError);

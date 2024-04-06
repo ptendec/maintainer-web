@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CreateExerciseDto } from '../models/CreateExerciseDto';
+import type { GetExerciseDto } from '../models/GetExerciseDto';
 import type { UpdateExerciseDto } from '../models/UpdateExerciseDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -27,23 +28,29 @@ export class ExercisesService {
     });
   }
   /**
-   * @returns CreateExerciseDto Array of all exercises.
+   * @param stageId
+   * @returns GetExerciseDto Array of all exercises.
    * @throws ApiError
    */
-  public static exerciseControllerFindAll(): CancelablePromise<Array<CreateExerciseDto>> {
+  public static exerciseControllerFindAll(
+    stageId?: string,
+  ): CancelablePromise<Array<GetExerciseDto>> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/exercises',
+      query: {
+        'stageId': stageId,
+      },
     });
   }
   /**
    * @param id
-   * @returns CreateExerciseDto The exercise with the specified ID.
+   * @returns GetExerciseDto The exercise with the specified ID.
    * @throws ApiError
    */
   public static exerciseControllerFindOne(
     id: string,
-  ): CancelablePromise<CreateExerciseDto> {
+  ): CancelablePromise<GetExerciseDto> {
     return __request(OpenAPI, {
       method: 'GET',
       url: '/exercises/{id}',

@@ -1,12 +1,45 @@
-import { useExercisesServiceExerciseControllerFindAll } from "@/shared/services/queries";
-import React from "react";
+import { Link } from "@tanstack/react-router";
+import React, { Fragment } from "react";
 
 const Main: React.FC = () => {
-  const { data, refetch } = useExercisesServiceExerciseControllerFindAll();
+  const links = [
+    {
+      name: "Главная",
+      path: "/",
+    },
+    {
+      name: "Добавить программу",
+      path: "/program/add",
+    },
+    {
+      name: "Добавить день",
+      path: "/day/add",
+    },
+    {
+      name: "Добавить этап",
+      path: "/stage/add",
+    },
+    {
+      name: "Добавить упражнение",
+      path: "/exercise/add",
+    },
+    {
+      name: "Регистрация",
+      path: "/auth/registration",
+    },
+    {
+      name: "Вход",
+      path: "/auth/login",
+    },
+  ];
   return (
     <div>
-      {JSON.stringify(data)}
-      <button onClick={() => refetch()}>ss</button>
+      {links.map((link) => (
+        <Fragment key={link.path}>
+          <Link to={link.path}>{link.name}</Link>
+          <br />
+        </Fragment>
+      ))}
     </div>
   );
 };

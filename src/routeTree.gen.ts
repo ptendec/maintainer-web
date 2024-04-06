@@ -14,6 +14,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthRegistrationImport } from './routes/auth/registration'
 import { Route as AuthLoginImport } from './routes/auth/login'
+import { Route as GymStageAddImport } from './routes/gym/stage/add'
+import { Route as GymProgramAddImport } from './routes/gym/program/add'
+import { Route as GymExerciseAddImport } from './routes/gym/exercise/add'
 import { Route as GymDayAddImport } from './routes/gym/day/add'
 
 // Create/Update Routes
@@ -30,6 +33,21 @@ const AuthRegistrationRoute = AuthRegistrationImport.update({
 
 const AuthLoginRoute = AuthLoginImport.update({
   path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GymStageAddRoute = GymStageAddImport.update({
+  path: '/gym/stage/add',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GymProgramAddRoute = GymProgramAddImport.update({
+  path: '/gym/program/add',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const GymExerciseAddRoute = GymExerciseAddImport.update({
+  path: '/gym/exercise/add',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -58,6 +76,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GymDayAddImport
       parentRoute: typeof rootRoute
     }
+    '/gym/exercise/add': {
+      preLoaderRoute: typeof GymExerciseAddImport
+      parentRoute: typeof rootRoute
+    }
+    '/gym/program/add': {
+      preLoaderRoute: typeof GymProgramAddImport
+      parentRoute: typeof rootRoute
+    }
+    '/gym/stage/add': {
+      preLoaderRoute: typeof GymStageAddImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -68,6 +98,9 @@ export const routeTree = rootRoute.addChildren([
   AuthLoginRoute,
   AuthRegistrationRoute,
   GymDayAddRoute,
+  GymExerciseAddRoute,
+  GymProgramAddRoute,
+  GymStageAddRoute,
 ])
 
 /* prettier-ignore-end */

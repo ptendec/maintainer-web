@@ -57,11 +57,13 @@ export const UserAuthorizationForm = () => {
           Авторизация
         </Title>
         <TextInput
+          error={form.errors.email}
           label="Электронная почта"
           {...form.getInputProps("email")}
           required
         />
         <PasswordInput
+          error={form.errors.password}
           label="Пароль"
           {...form.getInputProps("password")}
           required

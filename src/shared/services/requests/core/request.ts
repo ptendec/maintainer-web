@@ -7,11 +7,9 @@ import {
   OpenAPI,
   OpenAPIConfig,
 } from "@/shared/services/requests";
-
 import { ApiRequestOptions } from "@/shared/services/requests/core/ApiRequestOptions";
 import { ApiResult } from "@/shared/services/requests/core/ApiResult";
 import { OnCancel } from "@/shared/services/requests/core/CancelablePromise";
-import { useUserStore } from "@/shared/store/user";
 
 export const isDefined = <T>(
   value: T | null | undefined
@@ -34,8 +32,7 @@ let refreshAttempts = 0;
 async function refreshAccessToken(): Promise<string> {
   try {
     if (refreshAttempts >= 3) {
-      useUserStore.getState().removeUser();
-      history.pushState({}, "", "/login");
+      throw new Error("Exceeded maximum refresh attempts");
     }
 
     refreshAttempts++;
@@ -388,14 +385,16 @@ export const request = <T>(
 
       let response = await executeRequest();
 
+      // Check for token expiration or authorization error
       if (response.status === 401 || response.status === 403) {
         console.log("Token might be expired, attempting to refresh...");
 
         try {
           const token = await refreshAccessToken();
+          console.log(token);
           config.TOKEN = token;
           OpenAPI.TOKEN = token;
-          console.log(config.TOKEN);
+          // Retry the request once after refreshing the token
           response = await executeRequest();
         } catch (refreshError) {
           reject(refreshError);

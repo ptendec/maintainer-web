@@ -5,6 +5,5 @@
 export type CreateStageDto = {
   name: string;
   dayId: number;
-  order: number;
 };
 

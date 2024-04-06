@@ -5,7 +5,10 @@ import { CreateExerciseDto } from "../requests/models/CreateExerciseDto";
 import { CreateProgramDto } from "../requests/models/CreateProgramDto";
 import { CreateStageDto } from "../requests/models/CreateStageDto";
 import { CreateUserDto } from "../requests/models/CreateUserDto";
+import { GetDayDto } from "../requests/models/GetDayDto";
+import { GetExerciseDto } from "../requests/models/GetExerciseDto";
 import { GetProgramDto } from "../requests/models/GetProgramDto";
+import { GetStageDto } from "../requests/models/GetStageDto";
 import { LoginUserDto } from "../requests/models/LoginUserDto";
 import { LoginUserResDto } from "../requests/models/LoginUserResDto";
 import { RefreshTokenDto } from "../requests/models/RefreshTokenDto";
@@ -42,7 +45,9 @@ export const useDaysServiceDayControllerCreate = <TData = DaysServiceDayControll
 export type DaysServiceDayControllerFindAllDefaultResponse = Awaited<ReturnType<typeof DaysService.dayControllerFindAll>>;
 export type DaysServiceDayControllerFindAllQueryResult<TData = DaysServiceDayControllerFindAllDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useDaysServiceDayControllerFindAllKey = "DaysServiceDayControllerFindAll";
-export const useDaysServiceDayControllerFindAll = <TData = DaysServiceDayControllerFindAllDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>(queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useDaysServiceDayControllerFindAllKey, ...(queryKey ?? [])], queryFn: () => DaysService.dayControllerFindAll() as TData, ...options });
+export const useDaysServiceDayControllerFindAll = <TData = DaysServiceDayControllerFindAllDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>({ programId }: {
+    programId?: number;
+}, queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useDaysServiceDayControllerFindAllKey, ...(queryKey ?? [{ programId }])], queryFn: () => DaysService.dayControllerFindAll(programId) as TData, ...options });
 export type DaysServiceDayControllerFindOneDefaultResponse = Awaited<ReturnType<typeof DaysService.dayControllerFindOne>>;
 export type DaysServiceDayControllerFindOneQueryResult<TData = DaysServiceDayControllerFindOneDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useDaysServiceDayControllerFindOneKey = "DaysServiceDayControllerFindOne";
@@ -72,7 +77,9 @@ export const useExercisesServiceExerciseControllerCreate = <TData = ExercisesSer
 export type ExercisesServiceExerciseControllerFindAllDefaultResponse = Awaited<ReturnType<typeof ExercisesService.exerciseControllerFindAll>>;
 export type ExercisesServiceExerciseControllerFindAllQueryResult<TData = ExercisesServiceExerciseControllerFindAllDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useExercisesServiceExerciseControllerFindAllKey = "ExercisesServiceExerciseControllerFindAll";
-export const useExercisesServiceExerciseControllerFindAll = <TData = ExercisesServiceExerciseControllerFindAllDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>(queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useExercisesServiceExerciseControllerFindAllKey, ...(queryKey ?? [])], queryFn: () => ExercisesService.exerciseControllerFindAll() as TData, ...options });
+export const useExercisesServiceExerciseControllerFindAll = <TData = ExercisesServiceExerciseControllerFindAllDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>({ stageId }: {
+    stageId?: string;
+}, queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useExercisesServiceExerciseControllerFindAllKey, ...(queryKey ?? [{ stageId }])], queryFn: () => ExercisesService.exerciseControllerFindAll(stageId) as TData, ...options });
 export type ExercisesServiceExerciseControllerFindOneDefaultResponse = Awaited<ReturnType<typeof ExercisesService.exerciseControllerFindOne>>;
 export type ExercisesServiceExerciseControllerFindOneQueryResult<TData = ExercisesServiceExerciseControllerFindOneDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useExercisesServiceExerciseControllerFindOneKey = "ExercisesServiceExerciseControllerFindOne";
@@ -132,7 +139,9 @@ export const useStagesServiceStageControllerCreate = <TData = StagesServiceStage
 export type StagesServiceStageControllerFindAllDefaultResponse = Awaited<ReturnType<typeof StagesService.stageControllerFindAll>>;
 export type StagesServiceStageControllerFindAllQueryResult<TData = StagesServiceStageControllerFindAllDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useStagesServiceStageControllerFindAllKey = "StagesServiceStageControllerFindAll";
-export const useStagesServiceStageControllerFindAll = <TData = StagesServiceStageControllerFindAllDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>(queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useStagesServiceStageControllerFindAllKey, ...(queryKey ?? [])], queryFn: () => StagesService.stageControllerFindAll() as TData, ...options });
+export const useStagesServiceStageControllerFindAll = <TData = StagesServiceStageControllerFindAllDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>({ dayId }: {
+    dayId?: number;
+}, queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useStagesServiceStageControllerFindAllKey, ...(queryKey ?? [{ dayId }])], queryFn: () => StagesService.stageControllerFindAll(dayId) as TData, ...options });
 export type StagesServiceStageControllerFindOneDefaultResponse = Awaited<ReturnType<typeof StagesService.stageControllerFindOne>>;
 export type StagesServiceStageControllerFindOneQueryResult<TData = StagesServiceStageControllerFindOneDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useStagesServiceStageControllerFindOneKey = "StagesServiceStageControllerFindOne";

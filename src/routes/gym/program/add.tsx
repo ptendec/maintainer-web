@@ -1,38 +1,30 @@
-import {
-  useDaysServiceDayControllerCreate,
-  useProgramsServiceProgramControllerFindAll,
-} from "@/shared/services/queries";
-import { Box, Button, Group, Select, TextInput, Title } from "@mantine/core";
+import { useProgramsServiceProgramControllerCreate } from "@/shared/services/queries";
+import { Box, Button, Group, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 
-export const AddDay = () => {
+export const AddProgram = () => {
   const navigate = useNavigate();
-  const { mutateAsync: addDay } = useDaysServiceDayControllerCreate();
-  const { data } = useProgramsServiceProgramControllerFindAll();
-  const form =
-    useForm({
-      initialValues: {
-        name: "",
-      },
-    }) ?? [];
+  const { mutateAsync: addProgram } =
+    useProgramsServiceProgramControllerCreate();
 
-  const [programId, setProgramId] = useState<number>();
+  const form = useForm({
+    initialValues: {
+      name: "",
+    },
+  });
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formValues = form.validate();
-    if (!programId) return;
     if (formValues.hasErrors) {
       // обработка ошибок или дополнительная логика
       return;
     }
     try {
-      await addDay({
+      await addProgram({
         requestBody: {
           ...form.values,
-          programId,
         },
       });
       navigate({
@@ -42,12 +34,6 @@ export const AddDay = () => {
       console.log(error);
     }
   };
-
-  const formatted = data?.map((item) => ({
-    value: String(item.id),
-    label: item.name,
-  }));
-
   return (
     <Box style={{ maxWidth: 300 }} mx="auto">
       <form onSubmit={handleSubmit}>
@@ -56,15 +42,10 @@ export const AddDay = () => {
         </Title>
         <TextInput
           error={form.errors.name}
-          label="Название дня"
+          label="Название программы"
+          placeholder="Первая программа"
           {...form.getInputProps("name")}
           required
-        />
-        <Select
-          label="Выберите программу"
-          placeholder="Выберите программу"
-          data={formatted}
-          onChange={(value) => setProgramId(Number(value))}
         />
         <Group mt="md">
           <Button type="submit">Создать</Button>
