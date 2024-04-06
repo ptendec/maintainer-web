@@ -6,7 +6,6 @@ import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   RouterProvider,
-  ScrollRestoration,
   createBrowserHistory,
   createRouter,
 } from "@tanstack/react-router";
@@ -26,7 +25,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <MantineProvider>
         <Notifications />
-        <ScrollRestoration />
         <RouterProvider router={router} />
       </MantineProvider>
     </QueryClientProvider>
