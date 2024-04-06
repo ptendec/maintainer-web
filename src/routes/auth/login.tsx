@@ -51,7 +51,7 @@ export const UserAuthorizationForm = () => {
   };
 
   return (
-    <Box style={{ maxWidth: 300 }} mx="auto">
+    <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
       <form onSubmit={handleSubmit}>
         <Title order={3} mb="md">
           Авторизация

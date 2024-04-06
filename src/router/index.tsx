@@ -15,21 +15,21 @@ const mainRoute = createRoute({
   component: Main,
 });
 
-const registrationRoute = createRoute({
+const authRoute = createRoute({
   getParentRoute: () => rootRoute,
+  path: "auth",
+});
+
+const registrationRoute = createRoute({
+  getParentRoute: () => authRoute,
   path: "registration",
   component: UserRegistrationForm,
 });
 
 const loginRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => authRoute,
   path: "login",
   component: UserAuthorizationForm,
-});
-
-const authRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "auth",
 });
 
 const programRoute = createRoute({

@@ -17,9 +17,10 @@ export const isDefined = <T>(
   return value !== undefined && value !== null;
 };
 
-export const isTokenExpired = (token: string): boolean => {
+export const isTokenExpired = (token?: string | Resolver<string>): boolean => {
   try {
-    const [, payload] = token.split(".");
+    if (!token) return true;
+    const [, payload] = token.toString().split(".");
     const data = JSON.parse(atob(payload));
     return data.exp < Date.now() / 1000;
   } catch (error) {
@@ -368,6 +369,13 @@ export const request = <T>(
   return new CancelablePromise(async (resolve, reject, onCancel) => {
     try {
       const url = getUrl(config, options);
+
+      // if (isTokenExpired(config.TOKEN)) {
+      //   const token = await refreshAccessToken();
+      //   config.TOKEN = token;
+      //   OpenAPI.TOKEN = token;
+      // }
+
       const executeRequest = async (): Promise<Response> => {
         const formData = getFormData(options);
         const body = getRequestBody(options);
