@@ -4,7 +4,6 @@ import {
   useProgramsServiceProgramControllerFindAll,
   useStagesServiceStageControllerFindAll,
 } from "@/shared/services/queries";
-import { CreateExerciseDto } from "@/shared/services/requests";
 import { formattedData } from "@/shared/utils";
 import {
   Button,
@@ -45,10 +44,13 @@ export const AddExercise = () => {
       enabled: !!dayId,
     }
   );
-  const form = useForm<CreateExerciseDto>({
+  const form = useForm({
     initialValues: {
       name: "",
       remark: "",
+      warning: "",
+      repeats: "",
+      sets: "",
     },
   });
 
@@ -64,6 +66,8 @@ export const AddExercise = () => {
       await addExercise({
         requestBody: {
           ...form.values,
+          repeats: Number(form.values.repeats),
+          sets: Number(form.values.sets),
           stageId,
         },
       });
