@@ -3,14 +3,7 @@ import {
   useAuthServiceAuthControllerRegister,
 } from "@/shared/services/queries";
 import { OpenAPI } from "@/shared/services/requests";
-import {
-  Box,
-  Button,
-  Group,
-  PasswordInput,
-  TextInput,
-  Title,
-} from "@mantine/core";
+import { Box, Button, PasswordInput, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
 import React from "react";
@@ -93,9 +86,9 @@ export const UserRegistrationForm = () => {
           {...form.getInputProps("password")}
           required
         />
-        <Group mt="md">
-          <Button type="submit">Зарегистрироваться</Button>
-        </Group>
+        <Button mt="md" type="submit">
+          Зарегистрироваться
+        </Button>
       </form>
     </Box>
   );

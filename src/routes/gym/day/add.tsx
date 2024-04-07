@@ -2,7 +2,7 @@ import {
   useDaysServiceDayControllerCreate,
   useProgramsServiceProgramControllerFindAll,
 } from "@/shared/services/queries";
-import { Box, Button, Group, Select, TextInput, Title } from "@mantine/core";
+import { Box, Button, Select, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
@@ -66,9 +66,9 @@ export const AddDay = () => {
           data={formatted}
           onChange={(value) => setProgramId(Number(value))}
         />
-        <Group mt="md">
-          <Button type="submit">Создать</Button>
-        </Group>
+        <Button mt="md" w="100%" type="submit">
+          Создать
+        </Button>
       </form>
     </Box>
   );

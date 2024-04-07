@@ -1,5 +1,5 @@
 import { useProgramsServiceProgramControllerCreate } from "@/shared/services/queries";
-import { Box, Button, Group, TextInput, Title } from "@mantine/core";
+import { Box, Button, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -47,9 +47,9 @@ export const AddProgram = () => {
           {...form.getInputProps("name")}
           required
         />
-        <Group mt="md">
-          <Button type="submit">Создать</Button>
-        </Group>
+        <Button mt="md" w="100%" type="submit">
+          Создать
+        </Button>
       </form>
     </Box>
   );

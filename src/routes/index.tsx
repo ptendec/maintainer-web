@@ -1,12 +1,9 @@
+import { Button, Container, Group, Text } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
-import React, { Fragment } from "react";
+import React from "react";
 
 const Main: React.FC = () => {
   const links = [
-    {
-      name: "Главная",
-      path: "/",
-    },
     {
       name: "Добавить программу",
       path: "/program/add",
@@ -23,24 +20,79 @@ const Main: React.FC = () => {
       name: "Добавить упражнение",
       path: "/exercise/add",
     },
+  ];
+
+  const newLinks = [
     {
-      name: "Регистрация",
-      path: "/auth/registration",
+      title: "Авторизация",
+      links: [
+        {
+          name: "Регистрация",
+          path: "/auth/registration",
+        },
+        {
+          name: "Вход",
+          path: "/auth/login",
+        },
+      ],
     },
     {
-      name: "Вход",
-      path: "/auth/login",
+      title: "Программы",
+      links: [
+        {
+          name: "Добавить",
+          path: "/program/add",
+        },
+      ],
+    },
+    {
+      title: "Дни",
+      links: [
+        {
+          name: "Добавить",
+          path: "/day/add",
+        },
+      ],
+    },
+    {
+      title: "Этапы",
+      links: [
+        {
+          name: "Добавить",
+          path: "/stage/add",
+        },
+      ],
+    },
+    {
+      title: "Упражнения",
+      links: [
+        {
+          name: "Добавить",
+          path: "/exercise/add",
+        },
+      ],
     },
   ];
+
   return (
-    <div>
-      {links.map((link) => (
-        <Fragment key={link.path}>
-          <Link to={link.path}>{link.name}</Link>
-          <br />
-        </Fragment>
+    <Container>
+      {newLinks.map((link) => (
+        <Group key={link.title}>
+          <Text size="xl">{link.title}</Text>
+          {link.links.map((link) => (
+            <Link to={link.path} key={link.path}>
+              <Button
+                style={{
+                  margin: "10px",
+                }}
+              >
+                {link.name}
+              </Button>
+            </Link>
+          ))}
+        </Group>
       ))}
-    </div>
+    </Container>
   );
 };
 

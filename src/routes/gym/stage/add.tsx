@@ -3,7 +3,7 @@ import {
   useProgramsServiceProgramControllerFindAll,
   useStagesServiceStageControllerCreate,
 } from "@/shared/services/queries";
-import { Box, Button, Group, Select, TextInput, Title } from "@mantine/core";
+import { Box, Button, Select, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
@@ -91,9 +91,9 @@ export const AddStage = () => {
             setDayId(Number(value));
           }}
         />
-        <Group mt="md">
-          <Button type="submit">Создать</Button>
-        </Group>
+        <Button w="100%" mt="md" type="submit">
+          Создать
+        </Button>
       </form>
     </Box>
   );
