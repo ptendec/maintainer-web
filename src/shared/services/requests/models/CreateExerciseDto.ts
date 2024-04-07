@@ -6,7 +6,6 @@ export type CreateExerciseDto = {
   name: string;
   remark?: string;
   warning?: string;
-  video?: string;
   sets?: number;
   repeats?: number;
   stageId: number;

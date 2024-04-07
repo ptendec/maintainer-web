@@ -11,12 +11,12 @@ import { request as __request } from '../core/request';
 export class ExercisesService {
   /**
    * @param requestBody
-   * @returns CreateExerciseDto The exercise has been successfully created.
+   * @returns GetExerciseDto The exercise has been successfully created.
    * @throws ApiError
    */
   public static exerciseControllerCreate(
     requestBody: CreateExerciseDto,
-  ): CancelablePromise<CreateExerciseDto> {
+  ): CancelablePromise<GetExerciseDto> {
     return __request(OpenAPI, {
       method: 'POST',
       url: '/exercises',

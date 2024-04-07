@@ -395,7 +395,6 @@ export const request = <T>(
 
       if (response.status === 401 || response.status === 403) {
         try {
-          console.log("refresh");
           const token = await refreshAccessToken();
           config.TOKEN = token;
           OpenAPI.TOKEN = token;

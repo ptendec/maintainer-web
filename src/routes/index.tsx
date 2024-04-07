@@ -1,3 +1,4 @@
+import { Header } from "@/shared/ui/layout/Header";
 import { Button, Container, Group, Text } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
 import React from "react";
@@ -75,24 +76,27 @@ const Main: React.FC = () => {
   ];
 
   return (
-    <Container>
-      {newLinks.map((link) => (
-        <Group key={link.title}>
-          <Text size="xl">{link.title}</Text>
-          {link.links.map((link) => (
-            <Link to={link.path} key={link.path}>
-              <Button
-                style={{
-                  margin: "10px",
-                }}
-              >
-                {link.name}
-              </Button>
-            </Link>
-          ))}
-        </Group>
-      ))}
-    </Container>
+    <>
+      <Header />
+      <Container>
+        {newLinks.map((link) => (
+          <Group key={link.title}>
+            <Text size="xl">{link.title}</Text>
+            {link.links.map((link) => (
+              <Link to={link.path} key={link.path}>
+                <Button
+                  style={{
+                    margin: "10px",
+                  }}
+                >
+                  {link.name}
+                </Button>
+              </Link>
+            ))}
+          </Group>
+        ))}
+      </Container>
+    </>
   );
 };
 

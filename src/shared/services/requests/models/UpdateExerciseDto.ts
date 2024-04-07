@@ -6,10 +6,10 @@ export type UpdateExerciseDto = {
   name?: string;
   remark?: string;
   warning?: string;
-  video?: string;
   sets?: number;
   repeats?: number;
   stageId?: number;
+  video?: string;
   order?: number;
 };
 
