@@ -1,10 +1,10 @@
-import Main from "@/routes";
-import { UserAuthorizationForm } from "@/routes/auth/login";
-import { UserRegistrationForm } from "@/routes/auth/registration";
-import { AddDay } from "@/routes/gym/day/add";
-import { AddExercise } from "@/routes/gym/exercise/add";
-import { AddProgram } from "@/routes/gym/program/add";
-import { AddStage } from "@/routes/gym/stage/add";
+import Main from "@/pages";
+import { UserAuthorizationForm } from "@/pages/auth/login";
+import { UserRegistrationForm } from "@/pages/auth/registration";
+import { AddDay } from "@/pages/gym/day/add";
+import { AddExercise } from "@/pages/gym/exercise/add";
+import { AddProgram } from "@/pages/gym/program/add";
+import { AddStage } from "@/pages/gym/stage/add";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 
 const rootRoute = createRootRoute();
