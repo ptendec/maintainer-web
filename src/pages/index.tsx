@@ -6,19 +6,6 @@ import React from "react";
 const Main: React.FC = () => {
   const newLinks = [
     {
-      title: "Авторизация",
-      links: [
-        {
-          name: "Регистрация",
-          path: "/auth/registration",
-        },
-        {
-          name: "Вход",
-          path: "/auth/login",
-        },
-      ],
-    },
-    {
       title: "Программы",
       links: [
         {
