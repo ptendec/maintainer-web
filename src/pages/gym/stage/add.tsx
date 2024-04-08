@@ -3,6 +3,7 @@ import {
   useProgramsServiceProgramControllerFindAll,
   useStagesServiceStageControllerCreate,
 } from "@/shared/services/queries";
+import { Layout } from "@/shared/ui/layout/Layout";
 import { Box, Button, Select, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
@@ -65,36 +66,39 @@ export const AddStage = () => {
   };
 
   return (
-    <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
-      <form onSubmit={handleSubmit}>
-        <Title order={3} mb="md">
-          Добавление программы
-        </Title>
-        <TextInput
-          error={form.errors.name}
-          label="Название этапа"
-          {...form.getInputProps("name")}
-          required
-        />
-        <Select
-          label="Выберите программу"
-          placeholder="Выберите программу"
-          data={formattedPrograms}
-          onChange={onProgramChange}
-        />
-        <Select
-          value={dayId ? String(dayId) : null}
-          label="Выберите день"
-          placeholder="Выберите день"
-          data={formattedDays}
-          onChange={(value) => {
-            setDayId(Number(value));
-          }}
-        />
-        <Button w="100%" mt="md" type="submit">
-          Создать
-        </Button>
-      </form>
-    </Box>
+    <Layout>
+      {" "}
+      <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
+        <form onSubmit={handleSubmit}>
+          <Title order={3} mb="md">
+            Добавление программы
+          </Title>
+          <TextInput
+            error={form.errors.name}
+            label="Название этапа"
+            {...form.getInputProps("name")}
+            required
+          />
+          <Select
+            label="Выберите программу"
+            placeholder="Выберите программу"
+            data={formattedPrograms}
+            onChange={onProgramChange}
+          />
+          <Select
+            value={dayId ? String(dayId) : null}
+            label="Выберите день"
+            placeholder="Выберите день"
+            data={formattedDays}
+            onChange={(value) => {
+              setDayId(Number(value));
+            }}
+          />
+          <Button w="100%" mt="md" type="submit">
+            Создать
+          </Button>
+        </form>
+      </Box>
+    </Layout>
   );
 };

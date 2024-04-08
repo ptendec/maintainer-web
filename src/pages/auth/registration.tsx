@@ -3,6 +3,7 @@ import {
   useAuthServiceAuthControllerRegister,
 } from "@/shared/services/queries";
 import { OpenAPI } from "@/shared/services/requests";
+import { Layout } from "@/shared/ui/layout/Layout";
 import { Box, Button, PasswordInput, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
@@ -57,39 +58,41 @@ export const UserRegistrationForm = () => {
   };
 
   return (
-    <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
-      <form onSubmit={handleSubmit}>
-        <Title order={3} mb="md">
-          Регистрация
-        </Title>
-        <TextInput
-          label="Имя"
-          error={form.errors.firstName}
-          {...form.getInputProps("firstName")}
-          required
-        />
-        <TextInput
-          label="Фамилия"
-          error={form.errors.lastName}
-          {...form.getInputProps("lastName")}
-          required
-        />
-        <TextInput
-          error={form.errors.email}
-          label="Электронная почта"
-          {...form.getInputProps("email")}
-          required
-        />
-        <PasswordInput
-          error={form.errors.password}
-          label="Пароль"
-          {...form.getInputProps("password")}
-          required
-        />
-        <Button mt="md" type="submit">
-          Зарегистрироваться
-        </Button>
-      </form>
-    </Box>
+    <Layout>
+      <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
+        <form onSubmit={handleSubmit}>
+          <Title order={3} mb="md">
+            Регистрация
+          </Title>
+          <TextInput
+            label="Имя"
+            error={form.errors.firstName}
+            {...form.getInputProps("firstName")}
+            required
+          />
+          <TextInput
+            label="Фамилия"
+            error={form.errors.lastName}
+            {...form.getInputProps("lastName")}
+            required
+          />
+          <TextInput
+            error={form.errors.email}
+            label="Электронная почта"
+            {...form.getInputProps("email")}
+            required
+          />
+          <PasswordInput
+            error={form.errors.password}
+            label="Пароль"
+            {...form.getInputProps("password")}
+            required
+          />
+          <Button mt="md" type="submit">
+            Зарегистрироваться
+          </Button>
+        </form>
+      </Box>
+    </Layout>
   );
 };

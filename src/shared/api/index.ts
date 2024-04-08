@@ -10,6 +10,7 @@ import {
 import { ApiRequestOptions } from "@/shared/services/requests/core/ApiRequestOptions";
 import { ApiResult } from "@/shared/services/requests/core/ApiResult";
 import { OnCancel } from "@/shared/services/requests/core/CancelablePromise";
+import { useUserStore } from "@/shared/store/user";
 
 export const isDefined = <T>(
   value: T | null | undefined
@@ -32,7 +33,9 @@ let refreshAttempts = 0;
 
 async function refreshAccessToken(): Promise<string> {
   try {
-    if (refreshAttempts >= 3) {
+    if (refreshAttempts >= 2) {
+      useUserStore.getState().removeUser();
+      history.pushState({}, "", "/auth/login");
       throw new Error("Exceeded maximum refresh attempts");
     }
 

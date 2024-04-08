@@ -2,6 +2,7 @@ import {
   useDaysServiceDayControllerCreate,
   useProgramsServiceProgramControllerFindAll,
 } from "@/shared/services/queries";
+import { Layout } from "@/shared/ui/layout/Layout";
 import { Box, Button, Select, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
@@ -49,27 +50,29 @@ export const AddDay = () => {
   }));
 
   return (
-    <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
-      <form onSubmit={handleSubmit}>
-        <Title order={3} mb="md">
-          Добавление программы
-        </Title>
-        <TextInput
-          error={form.errors.name}
-          label="Название дня"
-          {...form.getInputProps("name")}
-          required
-        />
-        <Select
-          label="Выберите программу"
-          placeholder="Выберите программу"
-          data={formatted}
-          onChange={(value) => setProgramId(Number(value))}
-        />
-        <Button mt="md" w="100%" type="submit">
-          Создать
-        </Button>
-      </form>
-    </Box>
+    <Layout>
+      <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
+        <form onSubmit={handleSubmit}>
+          <Title order={3} mb="md">
+            Добавление программы
+          </Title>
+          <TextInput
+            error={form.errors.name}
+            label="Название дня"
+            {...form.getInputProps("name")}
+            required
+          />
+          <Select
+            label="Выберите программу"
+            placeholder="Выберите программу"
+            data={formatted}
+            onChange={(value) => setProgramId(Number(value))}
+          />
+          <Button mt="md" w="100%" type="submit">
+            Создать
+          </Button>
+        </form>
+      </Box>
+    </Layout>
   );
 };

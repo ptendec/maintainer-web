@@ -38,6 +38,12 @@ export const useAuthServiceAuthControllerLogin = <TData = AuthServiceAuthControl
 }, TContext>({ mutationFn: ({ requestBody }) => AuthService.authControllerLogin(requestBody) as unknown as Promise<TData>, ...options });
 export type AuthServiceAuthControllerRefreshMutationResult = Awaited<ReturnType<typeof AuthService.authControllerRefresh>>;
 export const useAuthServiceAuthControllerRefresh = <TData = AuthServiceAuthControllerRefreshMutationResult, TError = unknown, TContext = unknown>(options?: Omit<UseMutationOptions<TData, TError, void, TContext>, "mutationFn">) => useMutation<TData, TError, void, TContext>({ mutationFn: () => AuthService.authControllerRefresh() as unknown as Promise<TData>, ...options });
+export type AuthServiceAuthControllerMeDefaultResponse = Awaited<ReturnType<typeof AuthService.authControllerMe>>;
+export type AuthServiceAuthControllerMeQueryResult<TData = AuthServiceAuthControllerMeDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
+export const useAuthServiceAuthControllerMeKey = "AuthServiceAuthControllerMe";
+export const useAuthServiceAuthControllerMe = <TData = AuthServiceAuthControllerMeDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>(queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn" | "initialData">) => useQuery<TData, TError>({ queryKey: [useAuthServiceAuthControllerMeKey, ...(queryKey ?? [])], queryFn: () => AuthService.authControllerMe() as TData, ...options });
+export type AuthServiceAuthControllerLogoutMutationResult = Awaited<ReturnType<typeof AuthService.authControllerLogout>>;
+export const useAuthServiceAuthControllerLogout = <TData = AuthServiceAuthControllerLogoutMutationResult, TError = unknown, TContext = unknown>(options?: Omit<UseMutationOptions<TData, TError, void, TContext>, "mutationFn">) => useMutation<TData, TError, void, TContext>({ mutationFn: () => AuthService.authControllerLogout() as unknown as Promise<TData>, ...options });
 export type DaysServiceDayControllerCreateMutationResult = Awaited<ReturnType<typeof DaysService.dayControllerCreate>>;
 export const useDaysServiceDayControllerCreate = <TData = DaysServiceDayControllerCreateMutationResult, TError = unknown, TContext = unknown>(options?: Omit<UseMutationOptions<TData, TError, {
     requestBody: CreateDayDto;

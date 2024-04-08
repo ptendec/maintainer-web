@@ -1,4 +1,5 @@
 import { useProgramsServiceProgramControllerCreate } from "@/shared/services/queries";
+import { Layout } from "@/shared/ui/layout/Layout";
 import { Box, Button, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "@tanstack/react-router";
@@ -35,22 +36,24 @@ export const AddProgram = () => {
     }
   };
   return (
-    <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
-      <form onSubmit={handleSubmit}>
-        <Title order={3} mb="md">
-          Добавление программы
-        </Title>
-        <TextInput
-          error={form.errors.name}
-          label="Название программы"
-          placeholder="Первая программа"
-          {...form.getInputProps("name")}
-          required
-        />
-        <Button mt="md" w="100%" type="submit">
-          Создать
-        </Button>
-      </form>
-    </Box>
+    <Layout>
+      <Box style={{ maxWidth: 300, padding: "40px 20px" }} mx="auto">
+        <form onSubmit={handleSubmit}>
+          <Title order={3} mb="md">
+            Добавление программы
+          </Title>
+          <TextInput
+            error={form.errors.name}
+            label="Название программы"
+            placeholder="Первая программа"
+            {...form.getInputProps("name")}
+            required
+          />
+          <Button mt="md" w="100%" type="submit">
+            Создать
+          </Button>
+        </form>
+      </Box>
+    </Layout>
   );
 };

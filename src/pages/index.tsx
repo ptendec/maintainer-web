@@ -1,28 +1,9 @@
-import { Header } from "@/shared/ui/layout/Header";
+import { Layout } from "@/shared/ui/layout/Layout";
 import { Button, Container, Group, Text } from "@mantine/core";
 import { Link } from "@tanstack/react-router";
 import React from "react";
 
 const Main: React.FC = () => {
-  const links = [
-    {
-      name: "Добавить программу",
-      path: "/program/add",
-    },
-    {
-      name: "Добавить день",
-      path: "/day/add",
-    },
-    {
-      name: "Добавить этап",
-      path: "/stage/add",
-    },
-    {
-      name: "Добавить упражнение",
-      path: "/exercise/add",
-    },
-  ];
-
   const newLinks = [
     {
       title: "Авторизация",
@@ -76,8 +57,7 @@ const Main: React.FC = () => {
   ];
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Container>
         {newLinks.map((link) => (
           <Group key={link.title}>
@@ -96,7 +76,7 @@ const Main: React.FC = () => {
           </Group>
         ))}
       </Container>
-    </>
+    </Layout>
   );
 };
 

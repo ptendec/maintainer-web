@@ -51,4 +51,24 @@ export class AuthService {
       url: '/auth/refresh',
     });
   }
+  /**
+   * @returns UserDto User retrieved successfully.
+   * @throws ApiError
+   */
+  public static authControllerMe(): CancelablePromise<UserDto> {
+    return __request(OpenAPI, {
+      method: 'GET',
+      url: '/auth/me',
+    });
+  }
+  /**
+   * @returns any User logged out successfully.
+   * @throws ApiError
+   */
+  public static authControllerLogout(): CancelablePromise<any> {
+    return __request(OpenAPI, {
+      method: 'POST',
+      url: '/auth/logout',
+    });
+  }
 }
